@@ -20,17 +20,27 @@ def my_sort(lst):
     #edge case 1: if the input is not a list
         #return None
     #edge case 2: if the input list is empty
+    if (len(lst) == 0):
         #return an empty list
+        return []
     #create a result list
-    #push the first element in the
+    result = []
     #iterate over the list starting at the second index
+    for currentEl in lst:
         #iterate over the result list
+        for resultEl in result:
             #if the current value from original list is less than the next val
+            if (currentEl < resultEl):
                 #append the current value to the result list at the front
+                result.append(currentEl)
                 #continue
-            #elsif we are at the index of length - 1 in the result list
+                continue
+            #elsif we are at the end of the result list
+            elif (currentEl == result[-1]):
                 #append the current value to the result list at the back
+                result.append(currentEl)
     #return the result list
+    return result
 
 
 
@@ -149,3 +159,12 @@ class Node(object):
     Important data attributes: value (or element), left and right.
     '''
     pass
+
+
+#Testing
+
+#my_sort empty case
+print(my_sort([]))
+
+#my_sort regular case
+print(my_sort([5, 8, 3, 6, 2]))
