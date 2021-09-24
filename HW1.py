@@ -48,13 +48,29 @@ def my_sort(lst):
     return result
 
 
-
-
+"""
+O: return a list of key, value tuples --> [(key, val), (key, val), (key, val)]
+I: dictionary
+C: no constraints
+E: if input is not a dictionary
+If input is empty
+"""
 def sort_dict(d):
     ''' Sort a dictionary by value. The function should return
     (not print) a list of key, value tuples, in the form (key, value).
     '''
-    pass
+    #if the input is not a dictionary
+        #return none
+    #if the input is empty
+        #return an empty list
+    #first sort the dictionary by values
+
+    #create a result list
+
+    #iterate over the dictionary
+        #create a tuple for each key, val pair
+        #append this tuple to the list
+    #return the list of key val tuples
 
 
 def prefixes(seq):
