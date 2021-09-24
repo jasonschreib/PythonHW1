@@ -5,13 +5,34 @@
 # Pro tip: think long and hard about testing your code.
 # In this assignment, we aren't giving you example function calls.
 
-
+"""
+O: a sorted copy of a list
+I: list
+C: no constraints
+E: if input is not a list
+If input is empty
+"""
 def my_sort(lst):
     ''' Return a sorted copy of a list. Do not modify the original list. Do
     not use Python's built in sorted method or [].sort(). You may use
     any sorting algorithm of your choice.
     '''
-    pass
+    #edge case 1: if the input is not a list
+        #return None
+    #edge case 2: if the input list is empty
+        #return an empty list
+    #create a result list
+    #push the first element in the
+    #iterate over the list starting at the second index
+        #iterate over the result list
+            #if the current value from original list is less than the next val
+                #append the current value to the result list at the front
+                #continue
+            #elsif we are at the index of length - 1 in the result list
+                #append the current value to the result list at the back
+    #return the result list
+
+
 
 
 def sort_dict(d):
