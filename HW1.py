@@ -21,24 +21,22 @@ def my_sort(lst):
         #return None
     #edge case 2: if the input list is empty
     if (len(lst) == 0):
+        breakpoint()
         #return an empty list
         return []
+    #create a deep copy of the original list - so as not to edit the actual original
+
     #create a result list
     result = []
-    #iterate over the list starting at the second index
-    for currentEl in lst:
-        #iterate over the result list
-        for resultEl in result:
-            #if the current value from original list is less than the next val
-            if (currentEl < resultEl):
-                #append the current value to the result list at the front
-                result.append(currentEl)
-                #continue
-                continue
-            #elsif we are at the end of the result list
-            elif (currentEl == result[-1]):
-                #append the current value to the result list at the back
-                result.append(currentEl)
+
+    #as long as the deep copy has items in it
+        #set the minimum value to be the first index
+        #iterate over the copy list
+            #if an item is less than the min
+                #set this new num to be the min
+        #append the min value to the result list
+        #remove the value from the deep copy list
+
     #return the result list
     return result
 
