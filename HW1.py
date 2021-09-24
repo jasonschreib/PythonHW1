@@ -20,7 +20,9 @@ def my_sort(lst):
     any sorting algorithm of your choice.
     '''
     #edge case 1: if the input is not a list
+    if (type(lst) != list):
         #return None
+        return None
     #edge case 2: if the input list is empty
     if (len(lst) == 0):
         #return an empty list
@@ -60,17 +62,25 @@ def sort_dict(d):
     (not print) a list of key, value tuples, in the form (key, value).
     '''
     #if the input is not a dictionary
+    if (type(d) is not dict):
         #return none
+        return None
     #if the input is empty
+    if (len(d) == 0):
         #return an empty list
+        return {}
     #first sort the dictionary by values
-
+    sorted_by_keys = sorted(d, key=d.get)
     #create a result list
-
-    #iterate over the dictionary
-        #create a tuple for each key, val pair
+    resultList = []
+    #iterate over the sorted list of keys
+    for currkey in sorted_by_keys:
+        #create a tuple for each key, val pair from the dictionary
+        currentpair = (currkey, d[currkey])
         #append this tuple to the list
+        resultList.append(currentpair)
     #return the list of key val tuples
+    return resultList
 
 
 def prefixes(seq):
@@ -185,7 +195,13 @@ class Node(object):
 #Testing
 
 #my_sort empty case
-print(my_sort([]))
+# print(my_sort([]))
 
-#my_sort regular case
-print(my_sort([5, 8, 3, 6, 2]))
+# #my_sort regular case
+# print(my_sort([5, 8, 3, 6, 2]))
+
+print(sort_dict({}))
+
+d = {"Jason": 70, "Bob": 10}
+print(sort_dict(d))
+
