@@ -149,6 +149,12 @@ def extract_and_apply(l, p, f):
     return [f(x) for x in l if p(x)]
 
 
+"""
+O: a single value reduced
+I:  function of 2 elements, an iterable, and a possible initializer value
+C: l must be iterable
+E: if initializer is given, then start the reduce with this value
+"""
 def my_reduce(function, l, initializer=None):
     '''Apply function of two arguments cumulatively to the items of list l, from left to right,
     so as to reduce l to a single value. This is equivalent to the 'fold' function from CIS 120.
@@ -158,7 +164,18 @@ def my_reduce(function, l, initializer=None):
     the first item is returned. You may assume that if no initializer is given, the sequence will not
     be empty.
     '''
-    pass
+    #iterate over the list
+    for current in l:
+        #if there is an initializer present and its the first element in the iterable
+        if (initializer and current == l[0]):
+            #set accumulator var equal to the result of function call on initializer and first item in the list
+            accumulator = function(initializer, current)
+        #else
+        else:
+            #call the function on the accumulator and the current element in the list
+            accumulator = function(current, accumulator)
+    #return the accumulator
+    return accumulator
 
 
 class BSTree(object):
