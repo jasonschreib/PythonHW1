@@ -94,13 +94,13 @@ def prefixes(seq):
     in a single line.
     '''
     pass
-    #every time we yield, we want to add a new letter
-    #convert the sequence to a list
-    sequence_in_list = list(seq)
-    #iterate over the list
-    for currEL in sequence_in_list:
-        #return the string up to the current element
-        yield seq[0:4]
+    # #every time we yield, we want to add a new letter
+    # #convert the sequence to a list
+    # sequence_in_list = list(seq)
+    # #iterate over the list
+    # for currEL in sequence_in_list:
+    #     #return the string up to the current element
+    #     yield seq[0:4]
 
 
 def suffixes(seq):
@@ -109,17 +109,18 @@ def suffixes(seq):
     in a single line.
     '''
     pass
-    #every time we yield, we want to add a new letter starting from the back
-    #convert the sequence to a list
-    seq_to_list = list(seq)
-    #create ending var
-    ending = 0
-    #create the suffix from the back to the ending var (because we're going backwards)
-    curr_suffix = seq[len(seq):len(seq) - 1]
-    #increment the ending var
-    ending += 1
-    #return the suffix
-    return curr_suffix
+    # #every time we yield, we want to add a new letter starting from the back
+    # #convert the sequence to a list
+    # seq_to_list = list(seq)
+    # #create ending var
+    # ending = 0
+    # #create the suffix from the back to the ending var (because we're going backwards)
+    # curr_suffix = seq[len(seq):len(seq) - 1]
+    # #increment the ending var
+    # ending += 1
+    # #return the suffix
+    # return curr_suffix
+
 
 
 def slices(seq):
@@ -164,6 +165,8 @@ def my_reduce(function, l, initializer=None):
     the first item is returned. You may assume that if no initializer is given, the sequence will not
     be empty.
     '''
+    #set accumulator to None
+    accumulator = 0
     #iterate over the list
     for current in l:
         #if there is an initializer present and its the first element in the iterable
@@ -249,6 +252,16 @@ class Node(object):
 
 
 
-print(next(suffixes('hello')))
-print(next(suffixes('hello')))
-print(next(suffixes('hello')))
+# print(next(suffixes('hello')))
+# print(next(suffixes('hello')))
+# print(next(suffixes('hello')))
+
+#Testing my_reduce:
+# def my_add(a, b):
+#     result = a + b
+#     print(f"{a} + {b} = {result}")
+#     return result
+
+# numbers = [0, 1, 2, 3, 4]
+
+# print(my_reduce(my_add, numbers))
