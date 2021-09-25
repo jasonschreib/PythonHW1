@@ -82,13 +82,25 @@ def sort_dict(d):
     #return the list of key val tuples
     return resultList
 
-
+"""
+O: generator that yields all prefixes of a given sequence
+I: sequence - could be any datatype?
+C: none
+E: empty sequence?
+"""
 def prefixes(seq):
     ''' Create a generator that yields all the prefixes of a
     given sequence. Extra credit will be rewarded for doing this
     in a single line.
     '''
     pass
+    #every time we yield, we want to add a new letter
+    #convert the sequence to a list
+    sequence_in_list = list(seq)
+    #iterate over the list
+    for currEL in sequence_in_list:
+        #return the string up to the current element
+        yield seq[0:4]
 
 
 def suffixes(seq):
@@ -97,6 +109,17 @@ def suffixes(seq):
     in a single line.
     '''
     pass
+    #every time we yield, we want to add a new letter starting from the back
+    #convert the sequence to a list
+    seq_to_list = list(seq)
+    #create ending var
+    ending = 0
+    #create the suffix from the back to the ending var (because we're going backwards)
+    curr_suffix = seq[len(seq):len(seq) - 1]
+    #increment the ending var
+    ending += 1
+    #return the suffix
+    return curr_suffix
 
 
 def slices(seq):
@@ -123,7 +146,7 @@ def extract_and_apply(l, p, f):
 
     where l is a list, p is a predicate (boolean) and f is a function.
     '''
-    pass
+    return [f(x) for x in l if p(x)]
 
 
 def my_reduce(function, l, initializer=None):
@@ -200,8 +223,15 @@ class Node(object):
 # #my_sort regular case
 # print(my_sort([5, 8, 3, 6, 2]))
 
-print(sort_dict({}))
+# print(sort_dict({}))
 
-d = {"Jason": 70, "Bob": 10}
-print(sort_dict(d))
+# d = {"Jason": 70, "Bob": 10}
+# print(sort_dict(d))
 
+# print(next(prefixes('hello')))
+
+
+
+print(next(suffixes('hello')))
+print(next(suffixes('hello')))
+print(next(suffixes('hello')))
