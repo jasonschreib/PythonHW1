@@ -192,7 +192,10 @@ class BSTree(object):
     '''
 
     def __init__(self):
-        pass
+        #define a root Node for the tree
+        self.root = None
+        #define a count var for the tree
+        self.count = 0
 
     def __str__(self):
         ''' Return a representation of the tree as (left, elem, right)
@@ -202,22 +205,39 @@ class BSTree(object):
         '''
         pass
 
+    """
+    O: integer num
+    I: none...well I guess the tree that its being called on
+    C: none
+    E: none
+    """
     def __len__(self):
         ''' Returns the number of nodes in the tree.'''
-        pass
+        #just return the self.count var
+        return self.count
 
     def __contains__(self, element):
         ''' Finds whether a given element is in the tree.
         Returns True if the element is found, else returns False.
         '''
 
+    """
+    O: no output
+    I: element to be added in the tree
+    C: element must be in the param list
+    E: none
+    """
     def insert(self, element):
         ''' Insert a given value into the tree.
         Our implementation will allow duplicate nodes. The left subtree
         should contain all elements <= to the current element, and the
         right subtree will contain all elements > the current element.
         '''
-        pass
+        #create a new Node
+
+        #multiple cases: if there is no root Node yet
+            #create a root node
+
 
     def elements(self):
         ''' Return a list of the elements visited in an inorder traversal:
@@ -228,12 +248,22 @@ class BSTree(object):
         pass
 
 
+"""
+O: Node of the BSTree with value, left, and right attributes
+I: value of the node
+C:
+E: empty input??
+"""
 class Node(object):
     ''' A Node of the BSTree.
     Important data attributes: value (or element), left and right.
     '''
-    pass
-
+    #create constructor
+    def__init__(self, object):
+    #add attributes to the Node
+    self.value = value
+    self.left = None
+    self.right = None
 
 #Testing
 
