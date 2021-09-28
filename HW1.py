@@ -94,13 +94,13 @@ def prefixes(seq):
     in a single line.
     '''
     pass
-    # #every time we yield, we want to add a new letter
-    # #convert the sequence to a list
-    # sequence_in_list = list(seq)
-    # #iterate over the list
-    # for currEL in sequence_in_list:
-    #     #return the string up to the current element
-    #     yield seq[0:4]
+    #every time we yield, we want to add a new letter
+    #convert the sequence to a list
+    sequence_in_list = list(seq)
+    #iterate over the list
+    for currEL in sequence_in_list:
+        #return the string up to the current element
+        yield seq[0:4]
 
 
 def suffixes(seq):
@@ -155,6 +155,9 @@ O: a single value reduced
 I:  function of 2 elements, an iterable, and a possible initializer value
 C: l must be iterable
 E: if initializer is given, then start the reduce with this value
+If initializer is not given and sequence contains only one item,
+    the first item is returned. You may assume that if no initializer is given, the sequence will not
+    be empty
 """
 def my_reduce(function, l, initializer=None):
     '''Apply function of two arguments cumulatively to the items of list l, from left to right,
@@ -165,14 +168,20 @@ def my_reduce(function, l, initializer=None):
     the first item is returned. You may assume that if no initializer is given, the sequence will not
     be empty.
     '''
-    #set accumulator to None
-    accumulator = 0
+    #if no intializer and sequence contains only one element
+    if (initializer == None and len(l) == 1):
+        #return the first item
+        return l[0]
     #iterate over the list
     for current in l:
         #if there is an initializer present and its the first element in the iterable
         if (initializer and current == l[0]):
             #set accumulator var equal to the result of function call on initializer and first item in the list
             accumulator = function(initializer, current)
+        #elsif there is no initializer and we're on the first item
+        elif (initializer == None and current == l[0]):
+            #set accumulator to the first element
+            accumulator = current
         #else
         else:
             #call the function on the accumulator and the current element in the list
@@ -236,7 +245,13 @@ class BSTree(object):
         #create a new Node
 
         #multiple cases: if there is no root Node yet
-            #create a root node
+            #set the val of the root node
+            #increment the node count by one
+            #print 'created root node' statement
+            #return
+        #otherwise
+            #inner recursive function
+
 
 
     def elements(self):
@@ -259,11 +274,11 @@ class Node(object):
     Important data attributes: value (or element), left and right.
     '''
     #create constructor
-    def__init__(self, object):
-    #add attributes to the Node
-    self.value = value
-    self.left = None
-    self.right = None
+    def __init__(self, value):
+        #add attributes to the Node
+        self.value = value
+        self.left = None
+        self.right = None
 
 #Testing
 
