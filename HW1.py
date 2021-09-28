@@ -31,7 +31,6 @@ def my_sort(lst):
     original_list_copy = deepcopy(lst)
     #create a result list
     result = []
-    breakpoint()
     #as long as the deep copy has items in it
     while (original_list_copy):
         #set the minimum value to be the first index
@@ -68,7 +67,7 @@ def sort_dict(d):
     #if the input is empty
     if (len(d) == 0):
         #return an empty list
-        return {}
+        return []
     #first sort the dictionary by values
     sorted_by_keys = sorted(d, key=d.get)
     #create a result list
@@ -93,6 +92,8 @@ def prefixes(seq):
     given sequence. Extra credit will be rewarded for doing this
     in a single line.
     '''
+    #if the seq is empty
+        #return
     #iterate over the range of the length of the seq
     for i in range(len(seq)):
         #yield the sequence from 0 up to the current element
@@ -122,12 +123,17 @@ def slices(seq):
     given sequence. Extra credit will be rewarded for doing this
     in a single line.
     '''
+    #if the sequence is empty
+        #return ''
     #iterate over the range of the length of the sequence
     for i in range(len(seq)):
         #iterate over the range of the length of the sequence again
-        for j in range(len(seq) - i):
+        for j in range(i + 1, len(seq)):
+            #if i is 0 and j is 1 --> to take care of having an empty case
+            if (i == 0 and j == 1):
+                yield seq[0:0]
             #yield the sequence from the current i letter to the j letter - the slice of the sequence
-            yield seq[0:0] + seq[i:j]
+            yield seq[i:j]
 
 # HALF WAY POINT! Wahoo!
 
@@ -274,8 +280,6 @@ class BSTree(object):
             self.root = new_node
             #increment the node count by one
             self.count += 1
-            #print 'created root node' statement
-            print('created root node')
             #return
             return
         #otherwise (root node has been created)
@@ -288,8 +292,6 @@ class BSTree(object):
                     curr_node = new_node
                     #increment the node count by one
                     self.count += 1
-                    #print 'created new node' statement
-                    print('created new node')
                     #return
                     return
                 #elif the element to be added is less than the curr_node's value
@@ -304,15 +306,32 @@ class BSTree(object):
             insert_rec(self.root)
 
 
-
+    """
+    O: list of elements in the Tree
+    I: no inputs, function called on its own self
+    C: none
+    E: tree is empty (no insertions yet), then just return empty list
+    """
     def elements(self):
         ''' Return a list of the elements visited in an inorder traversal:
         http://en.wikipedia.org/wiki/Tree_traversal
         Note that this should be the sorted order if you've inserted all
         elements using your previously defined insert function.
         '''
-        pass
+        #if the root node is None (meaning there is nothin in the tree yet)
+            #return empty list
+        #create a result list
+        #create inner recursive function - elementes_rec(node)
+            #if node has something
+                #if there's a left child
+                    #call the function on the left child
+                #push the value of the node to the result list
+                #if there's a right child
+                    #call the function on the right child
 
+
+
+        #return the result list
 
 """
 O: Node of the BSTree with value, left, and right attributes
