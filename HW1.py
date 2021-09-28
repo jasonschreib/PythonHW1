@@ -249,20 +249,20 @@ class BSTree(object):
             if (current_node == None):
                 #return false
                 return False
-            #elif the element is equal to the current node
-            elif (current_node == element):
+            #elif the element is equal to the current node's value
+            elif (current_node.value == element):
                 #return true
                 return True
-            #elif the element is less than the current node
-            elif (element < current_node):
+            #elif the element is less than the current node's value
+            elif (element < current_node.value):
                 #return contains_rec on the left tree
                 return contains_rec(current_node.left)
-            #else (the element is greater than the current node)
-            elif (element > current_node):
+            #else (the element is greater than the current node's value)
+            elif (element > current_node.value):
                 #return contains_rec on the right tree
                 return contains_rec(current_node.right)
-        #call the inner function on the rootNode (passing in the rootNode)
-        contains_rec(self.root)
+        #call and return the inner function on the rootNode (passing in the rootNode)
+        return contains_rec(self.root)
 
     """
     O: no output
@@ -277,24 +277,41 @@ class BSTree(object):
         right subtree will contain all elements > the current element.
         '''
         #create a new Node
-
+        new_node = Node(element)
         #multiple cases: if there is no root Node yet
+        if (self.root == None):
             #set the val of the root node
+            self.root = new_node
             #increment the node count by one
+            self.count += 1
             #print 'created root node' statement
+            print('created root node')
             #return
+            return
         #otherwise (root node has been created)
-            #inner recursive function - insert_rec(currentNode)
+        else:
+            #inner recursive function - insert_rec(curr_node)
+            def insert_rec(curr_node):
                 #if the currentNode is none,
-                    #set the currentNode equal to the element to be added
+                if (curr_node == None):
+                    #set the curr_node equal to the element to be added
+                    curr_node = new_node
                     #increment the node count by one
+                    self.count += 1
                     #print 'created new node' statement
+                    print('created new node')
                     #return
-                #elif the element to be added is less than the currentNode
+                    return
+                #elif the element to be added is less than the curr_node's value
+                elif (element < curr_node.value):
                     #return insert_rec function on the left tree
-                #elif the element to be added is greater than or equal to the currentNode
+                    return insert_rec(curr_node.left)
+                #elif the element to be added is greater than or equal to the curr_node's value
+                elif (element >= curr_node.value):
                     #return insert_rec function on the right tree
-            #call the inner recursive function on the root node
+                    return insert_rec(curr_node.right)
+            #call and return the inner recursive function on the root node
+            insert_rec(self.root)
 
 
 
