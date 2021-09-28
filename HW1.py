@@ -93,14 +93,6 @@ def prefixes(seq):
     given sequence. Extra credit will be rewarded for doing this
     in a single line.
     '''
-    # #every time we yield, we want to add a new letter
-    # #convert the sequence to a list
-    # sequence_in_list = list(seq)
-    # #iterate over the list
-    # for currEL in sequence_in_list:
-    #     #return the string up to the current element
-    #     yield seq[0:4]
-
     #iterate over the range of the length of the seq
     for i in range(len(seq)):
         #yield the sequence from 0 up to the current element
@@ -113,31 +105,29 @@ def suffixes(seq):
     in a single line.
     '''
     # #every time we yield, we want to add a new letter starting from the back
-    # #convert the sequence to a list
-    # seq_to_list = list(seq)
-    # #create ending var
-    # ending = 0
-    # #create the suffix from the back to the ending var (because we're going backwards)
-    # curr_suffix = seq[len(seq):len(seq) - 1]
-    # #increment the ending var
-    # ending += 1
-    # #return the suffix
-    # return curr_suffix
-
     #iterate over the range of the length of the seq
     for j in range(len(seq)):
         #yield the sequence from the back of the seq down to the first element
         yield seq[len(seq) - 1- j:-1] + seq[-1:]
 
 
-
+"""
+O: all the slices of a given sequence
+I: arbitrary sequence (datatype not known)
+C: none
+E: sequence is empty?
+"""
 def slices(seq):
     ''' Create a generator that yields all the slices of a
     given sequence. Extra credit will be rewarded for doing this
     in a single line.
     '''
-    pass
-
+    #iterate over the range of the length of the sequence
+    for i in range(len(seq)):
+        #iterate over the range of the length of the sequence again
+        for j in range(len(seq) - i):
+            #yield the sequence from the current i letter to the j letter - the slice of the sequence
+            yield seq[0:0] + seq[i:j]
 
 # HALF WAY POINT! Wahoo!
 
@@ -364,6 +354,17 @@ class Node(object):
 # print(next(suffix)) # 's'
 # print(next(suffix)) # 'es'
 # print(next(suffix)) # 'yes'
+
+slices_name = slices('jason')
+print(next(slices_name)) # ' '
+print(next(slices_name)) # 'j'
+print(next(slices_name)) # 'ja'
+print(next(slices_name)) # 'jas'
+print(next(slices_name)) # 'jaso'
+print(next(slices_name)) # 'jasons'
+print(next(slices_name))
+print(next(slices_name))
+print(next(slices_name))
 
 #Testing my_reduce:
 # def my_add(a, b):
