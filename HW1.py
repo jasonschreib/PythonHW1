@@ -243,21 +243,26 @@ class BSTree(object):
         ''' Finds whether a given element is in the tree.
         Returns True if the element is found, else returns False.
         '''
-        #if root node is None
-            #return false
-        #otherwise there is a root Node
-            #create inner function - contains_rec(element)
-                #if the current node is None
-                    #return false
-                #elif the element is equal to the current node
-                    #return true
-                #elif the element is less than the current node
-                    #call contains_rec on the left tree
-                    #return
-                #else (the element is greater than the current node)
-                    #call contains_rec on the right tree
-                    #return
-            #call the inner function on the rootNode (passing in the element)
+        #create inner function - contains_rec(current_node)
+        def contains_rec(current_node):
+            #if the current node is None
+            if (current_node == None):
+                #return false
+                return False
+            #elif the element is equal to the current node
+            elif (current_node == element):
+                #return true
+                return True
+            #elif the element is less than the current node
+            elif (element < current_node):
+                #return contains_rec on the left tree
+                return contains_rec(current_node.left)
+            #else (the element is greater than the current node)
+            elif (element > current_node):
+                #return contains_rec on the right tree
+                return contains_rec(current_node.right)
+        #call the inner function on the rootNode (passing in the rootNode)
+        contains_rec(self.root)
 
     """
     O: no output
@@ -286,11 +291,9 @@ class BSTree(object):
                     #print 'created new node' statement
                     #return
                 #elif the element to be added is less than the currentNode
-                    #call the insert_rec function on the left tree
-                    #return
+                    #return insert_rec function on the left tree
                 #elif the element to be added is greater than or equal to the currentNode
-                    #call the insert_rec function on the right tree
-                    #return
+                    #return insert_rec function on the right tree
             #call the inner recursive function on the root node
 
 
