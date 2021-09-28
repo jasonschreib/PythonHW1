@@ -233,10 +233,31 @@ class BSTree(object):
         #just return the self.count var
         return self.count
 
+    """
+    O: boolean whether the item was found or not
+    I: integer element to be found
+    C: none
+    E: if the tree is empty, return false
+    """
     def __contains__(self, element):
         ''' Finds whether a given element is in the tree.
         Returns True if the element is found, else returns False.
         '''
+        #if root node is None
+            #return false
+        #otherwise there is a root Node
+            #create inner function - contains_rec(element)
+                #if the current node is None
+                    #return false
+                #elif the element is equal to the current node
+                    #return true
+                #elif the element is less than the current node
+                    #call contains_rec on the left tree
+                    #return
+                #else (the element is greater than the current node)
+                    #call contains_rec on the right tree
+                    #return
+            #call the inner function on the rootNode (passing in the element)
 
     """
     O: no output
@@ -257,8 +278,20 @@ class BSTree(object):
             #increment the node count by one
             #print 'created root node' statement
             #return
-        #otherwise
-            #inner recursive function
+        #otherwise (root node has been created)
+            #inner recursive function - insert_rec(currentNode)
+                #if the currentNode is none,
+                    #set the currentNode equal to the element to be added
+                    #increment the node count by one
+                    #print 'created new node' statement
+                    #return
+                #elif the element to be added is less than the currentNode
+                    #call the insert_rec function on the left tree
+                    #return
+                #elif the element to be added is greater than or equal to the currentNode
+                    #call the insert_rec function on the right tree
+                    #return
+            #call the inner recursive function on the root node
 
 
 
@@ -300,16 +333,16 @@ class Node(object):
 
 # d = {"Jason": 70, "Bob": 10}
 # print(sort_dict(d))
-pre = prefixes('hello')
-print(next(pre))
-print(next(pre))
-print(next(pre))
+# pre = prefixes('hello')
+# print(next(pre))
+# print(next(pre))
+# print(next(pre))
 
 
-suffix = suffixes('yes')
-print(next(suffix)) #' '
-print(next(suffix)) # 's'
-print(next(suffix)) # 'es'
+# suffix = suffixes('yes')
+# print(next(suffix)) #' '
+# print(next(suffix)) # 's'
+# print(next(suffix)) # 'es'
 # print(next(suffix)) # 'yes'
 
 #Testing my_reduce:
