@@ -128,12 +128,15 @@ def slices(seq):
     #iterate over the range of the length of the sequence
     for i in range(len(seq)):
         #iterate over the range of the length of the sequence again
-        for j in range(i + 1, len(seq)):
-            #if i is 0 and j is 1 --> to take care of having an empty case
-            if (i == 0 and j == 1):
+        for j in range(len(seq) + 1):
+            #if i and j are both zero
+            if (i == 0 and j == 0):
+                #yield empty seq
                 yield seq[0:0]
-            #yield the sequence from the current i letter to the j letter - the slice of the sequence
-            yield seq[i:j]
+            #otherwise if i is less than j
+            elif (i < j):
+                #yield the sequence from the current i letter to the j letter - the slice of the sequence
+                yield seq[i:j]
 
 # HALF WAY POINT! Wahoo!
 
@@ -243,6 +246,7 @@ class BSTree(object):
         ''' Finds whether a given element is in the tree.
         Returns True if the element is found, else returns False.
         '''
+        breakpoint()
         #create inner function - contains_rec(current_node)
         def contains_rec(current_node):
             #if the current node is None
@@ -276,38 +280,14 @@ class BSTree(object):
         should contain all elements <= to the current element, and the
         right subtree will contain all elements > the current element.
         '''
-        #create a new Node
-        new_node = Node(element)
-        #multiple cases: if there is no root Node yet
-        if (self.root == None):
-            #set the val of the root node
-            self.root = new_node
-            #increment the node count by one
-            self.count += 1
-            #return
-            return
-        #otherwise (root node has been created)
+        #if there is a root
+        if (self.root):
+            #return insert function call from node class
+            return self.root.insert(element)
+        #otherwise
         else:
-            #inner recursive function - insert_rec(curr_node)
-            def insert_rec(curr_node):
-                #if the currentNode is none,
-                if (curr_node == None):
-                    #set the curr_node equal to the element to be added
-                    curr_node = new_node
-                    #increment the node count by one
-                    self.count += 1
-                    #return
-                    return
-                #elif the element to be added is less than the curr_node's value
-                elif (element < curr_node.value):
-                    #return insert_rec function on the left tree
-                    return insert_rec(curr_node.left)
-                #elif the element to be added is greater than or equal to the curr_node's value
-                elif (element >= curr_node.value):
-                    #return insert_rec function on the right tree
-                    return insert_rec(curr_node.right)
-            #call and return the inner recursive function on the root node
-            insert_rec(self.root)
+            #create a new node and set it to the root
+            self.root = Node(element)
 
 
     """
@@ -364,6 +344,80 @@ class Node(object):
         self.left = None
         self.right = None
 
+    """
+    O: no output
+    I: element to be added in the tree
+    C: element must be in the param list
+    E: none
+    """
+    #function to insert a node
+    def __insert__(self, element):
+    ''' Insert a given value into the tree.
+        Our implementation will allow duplicate nodes. The left subtree
+        should contain all elements <= to the current element, and the
+        right subtree will contain all elements > the current element.
+    '''
+    #if the element to add is less than the curr_node
+    if (element < self.value):
+        #if there is a left child
+        if (self.left):
+            #then recursive call to the left child
+            return self.left.insert(element)
+        #otherwise
+        else:
+            #set the left child to a new node with the element as value
+            self.left = Node(element)
+            #return
+            return
+    #if the element to add is greater than or equal to curr_node
+    if (element >= self.value):
+        #if there is a right child
+        if (self.right):
+            #then rec call to the right child
+            return self.right.insert(element)
+        #otherwise
+        else:
+            #set the right child to a new node with the element as value
+            self.right = Node(element)
+            #return
+            return
+
+    """
+    O: boolean whether the item was found or not
+    I: integer element to be found
+    C: none
+    E: if the tree is empty, return false
+    """
+    def __contains__(self, element):
+        ''' Finds whether a given element is in the tree.
+        Returns True if the element is found, else returns False.
+        '''
+
+
+
+
+
+
+
+
+
+
+
+tree = BSTree()
+tree.insert(5)
+tree.insert(4)
+tree.insert(3)
+# print(tree.__contains__(5))
+print(tree.__contains__(4))
+print(tree.__contains__(3))
+
+
+
+
+
+
+
+
 #Testing
 
 #my_sort empty case
@@ -390,13 +444,13 @@ class Node(object):
 # print(next(suffix)) # 'es'
 # print(next(suffix)) # 'yes'
 
-# slices_name = slices('jas')
+# slices_name = slices('yes')
 # print(next(slices_name)) # ' '
-# print(next(slices_name)) # 'j'
-# print(next(slices_name)) # 'ja'
-# print(next(slices_name)) # 'jas'
-# print(next(slices_name)) # 'a'
-# print(next(slices_name)) # 'as'
+# print(next(slices_name)) # 'y'
+# print(next(slices_name)) # 'te'
+# print(next(slices_name)) # 'yes'
+# print(next(slices_name)) # 'e'
+# print(next(slices_name)) # 'es'
 # print(next(slices_name)) # 's'
 
 #Testing my_reduce:
@@ -417,4 +471,3 @@ class Node(object):
 # print(string[0:3])
 # print(string[2:3])
 # print(string[3:3], 'hey')
-
