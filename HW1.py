@@ -123,8 +123,8 @@ def slices(seq):
     '''
     #if the sequence is empty
     if (len(seq) == 0):
-        #return the sequence
-        return seq
+        #yield an empty sequence
+        yield seq
     #iterate over the range of the length of the sequence
     for i in range(len(seq)):
         #iterate over the range of the length of the sequence again
@@ -175,6 +175,8 @@ def my_reduce(function, l, initializer=None):
     the first item is returned. You may assume that if no initializer is given, the sequence will not
     be empty.
     '''
+    #set accumulator to placeholder value at the beginning -- trying to pass a test
+    accumulator = 0
     #if there is an initializer and the sequence is empty
     if (initializer and len(l) == 0):
         #return the initializer
@@ -524,3 +526,12 @@ class Node(object):
 # print(string[0:3])
 # print(string[2:3])
 # print(string[3:3], 'hey')
+
+# def add(a, b):
+#     return a + b
+
+# print(my_reduce(add, [0, 0]))
+
+# slices = slices([])
+# print(next(slices))
+
