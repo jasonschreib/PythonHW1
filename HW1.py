@@ -214,16 +214,28 @@ class BSTree(object):
     def __init__(self):
         #define a root Node for the tree
         self.root = None
-        #define a count var for the tree
-        self.count = 0
 
+    """
+    O: tuple representation of BST
+    I: none, besides the function call on the tree
+    C: none
+    E: empty tree
+    """
     def __str__(self):
         ''' Return a representation of the tree as (left, elem, right)
         where elem is the element stored in the root, and left and right
         are the left and right subtrees (which print out similarly).
         Empty trees should be represented by underscores. Do not include spaces.
         '''
-        pass
+        #if there is a root
+        if (self.root):
+            #call the node class function for str on the root node
+            return self.root.str()
+        #otherwise
+        else:
+            #return empty tuple (_,_,_)
+            return ('_','_','_')
+
 
     """
     O: integer num
@@ -233,8 +245,9 @@ class BSTree(object):
     """
     def __len__(self):
         ''' Returns the number of nodes in the tree.'''
-        #just return the self.count var
-        return self.count
+        #just return the length of the elements function
+        tree_len = self.elements()
+        return len(tree_len)
 
     """
     O: boolean whether the item was found or not
@@ -246,27 +259,14 @@ class BSTree(object):
         ''' Finds whether a given element is in the tree.
         Returns True if the element is found, else returns False.
         '''
-        breakpoint()
-        #create inner function - contains_rec(current_node)
-        def contains_rec(current_node):
-            #if the current node is None
-            if (current_node == None):
-                #return false
-                return False
-            #elif the element is equal to the current node's value
-            elif (current_node.value == element):
-                #return true
-                return True
-            #elif the element is less than the current node's value
-            elif (element < current_node.value):
-                #return contains_rec on the left tree
-                return contains_rec(current_node.left)
-            #else (the element is greater than the current node's value)
-            elif (element > current_node.value):
-                #return contains_rec on the right tree
-                return contains_rec(current_node.right)
-        #call and return the inner function on the rootNode (passing in the rootNode)
-        return contains_rec(self.root)
+        #if there is a root
+        if (self.root):
+            #call the node class contains function on the root node
+            return self.root.contains(element)
+        #otherwise
+        else:
+            #return false
+            return False
 
     """
     O: no output
@@ -327,6 +327,7 @@ class BSTree(object):
         #return the result list
         return result_of_elements
 
+
 """
 O: Node of the BSTree with value, left, and right attributes
 I: value of the node
@@ -351,36 +352,37 @@ class Node(object):
     E: none
     """
     #function to insert a node
-    def __insert__(self, element):
-    ''' Insert a given value into the tree.
+    def insert(self, element):
+        ''' Insert a given value into the tree.
         Our implementation will allow duplicate nodes. The left subtree
         should contain all elements <= to the current element, and the
         right subtree will contain all elements > the current element.
-    '''
-    #if the element to add is less than the curr_node
-    if (element < self.value):
-        #if there is a left child
-        if (self.left):
-            #then recursive call to the left child
-            return self.left.insert(element)
-        #otherwise
-        else:
-            #set the left child to a new node with the element as value
-            self.left = Node(element)
-            #return
-            return
-    #if the element to add is greater than or equal to curr_node
-    if (element >= self.value):
-        #if there is a right child
-        if (self.right):
-            #then rec call to the right child
-            return self.right.insert(element)
-        #otherwise
-        else:
-            #set the right child to a new node with the element as value
-            self.right = Node(element)
-            #return
-            return
+        '''
+        #if the element to add is less than the curr_node
+        if (element < self.value):
+            #if there is a left child
+            if (self.left):
+                #then recursive call to the left child
+                return self.left.insert(element)
+            #otherwise
+            else:
+                #set the left child to a new node with the element as value
+                self.left = Node(element)
+                #return
+                return
+        #if the element to add is greater than or equal to curr_node
+        if (element >= self.value):
+            #if there is a right child
+            if (self.right):
+                #then rec call to the right child
+                return self.right.insert(element)
+            #otherwise
+            else:
+                #set the right child to a new node with the element as value
+                self.right = Node(element)
+                #return
+                return
+
 
     """
     O: boolean whether the item was found or not
@@ -388,12 +390,56 @@ class Node(object):
     C: none
     E: if the tree is empty, return false
     """
-    def __contains__(self, element):
+    def contains(self, element):
         ''' Finds whether a given element is in the tree.
         Returns True if the element is found, else returns False.
         '''
+        #if the element is equal to to the current node value we're looking for
+        if (element == self.value):
+            #return true
+            return True
+        #if element is less than current node value
+        if (element < self.value):
+            #if there is a left node
+            if (self.left):
+                #return the rec contains function on the current node left
+                return self.left.contains(element)
+            #otherwise
+            else:
+                #return false
+                return False
+        #if the element is greater than the current node value
+        if (element > self.value):
+            #if there is a right node
+            if (self.right):
+                #return the rec contains function on the current node right
+                return self.right.contains(element)
+            #otherwise
+            else:
+                #return false
+                return False
 
-
+    """
+    O: tuple representation of BST
+    I: none, besides the function call on the tree
+    C: none
+    E: empty tree
+    """
+    def str(self):
+        ''' Return a representation of the tree as (left, elem, right)
+        where elem is the element stored in the root, and left and right
+        are the left and right subtrees (which print out similarly).
+        Empty trees should be represented by underscores. Do not include spaces.
+        '''
+        #if the current node is an empty tree
+        if (self == None):
+            #return an underscore
+            return '_'
+        #otherwise
+        else:
+            #return tuple
+            breakpoint()
+            return (self.left.str(), self.value, self.right.str())
 
 
 
@@ -406,12 +452,12 @@ class Node(object):
 tree = BSTree()
 tree.insert(5)
 tree.insert(4)
-tree.insert(3)
-# print(tree.__contains__(5))
-print(tree.__contains__(4))
-print(tree.__contains__(3))
-
-
+tree.insert(6)
+# # print(tree.__contains__(5))
+# print(tree.__contains__(4))
+# print(tree.__contains__(3))
+# print(tree.__len__())
+print(tree.__str__())
 
 
 
