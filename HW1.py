@@ -234,7 +234,7 @@ class BSTree(object):
         #otherwise
         else:
             #return empty tuple (_,_,_)
-            return ('_','_','_')
+            return '(_,_,_)'
 
 
     """
@@ -431,15 +431,22 @@ class Node(object):
         are the left and right subtrees (which print out similarly).
         Empty trees should be represented by underscores. Do not include spaces.
         '''
-        #if the current node is an empty tree
-        if (self == None):
-            #return an underscore
-            return '_'
-        #otherwise
-        else:
-            #return tuple
-            breakpoint()
-            return (self.left.str(), self.value, self.right.str())
+        #if there is a left node and right node
+        if (self.left and self.right):
+            #return regular tuple
+            return f"({self.left.str()},{self.value},{self.right.str()})"
+        #elif there is only left node, no right node
+        elif (self.left and self.right == None):
+            #return tuple with empty right
+            return f"({self.left.str()},{self.value},_)"
+        #elif there is only right node, no left
+        elif (self.left == None and self.right):
+            #return tuple with empty left
+            return f"(_,{self.value},{self.right.str()})"
+        #elif there is no left and right node
+        elif (self.left == None and self.right == None):
+            #return tuple with underscores for left and right
+            return f"(_,{self.value},_)"
 
 
 
@@ -449,15 +456,15 @@ class Node(object):
 
 
 
-tree = BSTree()
-tree.insert(5)
-tree.insert(4)
-tree.insert(6)
+# tree = BSTree()
+# tree.insert(5)
+# tree.insert(4)
+# tree.insert(6)
 # # print(tree.__contains__(5))
 # print(tree.__contains__(4))
 # print(tree.__contains__(3))
 # print(tree.__len__())
-print(tree.__str__())
+# print(tree.__str__())
 
 
 
