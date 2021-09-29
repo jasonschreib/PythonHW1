@@ -92,14 +92,10 @@ def prefixes(seq):
     given sequence. Extra credit will be rewarded for doing this
     in a single line.
     '''
-    #if the seq is empty
-    if (len(seq) == 0):
-        #return
-        return
     #iterate over the range of the length of the seq
-    for i in range(len(seq)):
+    for i in range(len(seq) + 1):
         #yield the sequence from 0 up to the current element
-        yield seq[0:i]
+        yield seq[0 : i]
 
 
 def suffixes(seq):
@@ -109,9 +105,9 @@ def suffixes(seq):
     '''
     # #every time we yield, we want to add a new letter starting from the back
     #iterate over the range of the length of the seq
-    for j in range(len(seq)):
+    for j in range(len(seq) + 1):
         #yield the sequence from the back of the seq down to the first element
-        yield seq[len(seq) - 1- j:-1] + seq[-1:]
+        yield seq[len(seq) - j : len(seq)]
 
 
 """
@@ -127,8 +123,8 @@ def slices(seq):
     '''
     #if the sequence is empty
     if (len(seq) == 0):
-        #return ''
-        return ''
+        #return the sequence
+        return seq
     #iterate over the range of the length of the sequence
     for i in range(len(seq)):
         #iterate over the range of the length of the sequence again
@@ -176,24 +172,28 @@ def my_reduce(function, l, initializer=None):
     the first item is returned. You may assume that if no initializer is given, the sequence will not
     be empty.
     '''
+    #if there is an initializer and the sequence is empty
+    if (initializer and len(l) == 0):
+        #return the initializer
+        return initializer
     #if no intializer and sequence contains only one element
     if (initializer == None and len(l) == 1):
         #return the first item
         return l[0]
     #iterate over the list
-    for current in l:
+    for i in range(len(l)):
         #if there is an initializer present and its the first element in the iterable
-        if (initializer and current == l[0]):
+        if (initializer and i == 0):
             #set accumulator var equal to the result of function call on initializer and first item in the list
-            accumulator = function(initializer, current)
+            accumulator = function(initializer, l[i])
         #elsif there is no initializer and we're on the first item
-        elif (initializer == None and current == l[0]):
+        elif (initializer == None and i == 0):
             #set accumulator to the first element
-            accumulator = current
+            accumulator = l[i]
         #else
         else:
             #call the function on the accumulator and the current element in the list
-            accumulator = function(current, accumulator)
+            accumulator = function(l[i], accumulator)
     #return the accumulator
     return accumulator
 
@@ -376,10 +376,12 @@ class Node(object):
 
 # d = {"Jason": 70, "Bob": 10}
 # print(sort_dict(d))
-# pre = prefixes('hello')
-# print(next(pre))
-# print(next(pre))
-# print(next(pre))
+
+# pre = prefixes('cat')
+# print(next(pre)) #''
+# print(next(pre)) #'c'
+# print(next(pre)) #'ca'
+# print(next(pre)) #'cat'
 
 
 # suffix = suffixes('yes')
@@ -388,16 +390,14 @@ class Node(object):
 # print(next(suffix)) # 'es'
 # print(next(suffix)) # 'yes'
 
-# slices_name = slices('jason')
+# slices_name = slices('jas')
 # print(next(slices_name)) # ' '
 # print(next(slices_name)) # 'j'
 # print(next(slices_name)) # 'ja'
 # print(next(slices_name)) # 'jas'
-# print(next(slices_name)) # 'jaso'
-# print(next(slices_name)) # 'jasons'
-# print(next(slices_name))
-# print(next(slices_name))
-# print(next(slices_name))
+# print(next(slices_name)) # 'a'
+# print(next(slices_name)) # 'as'
+# print(next(slices_name)) # 's'
 
 #Testing my_reduce:
 # def my_add(a, b):
@@ -408,3 +408,13 @@ class Node(object):
 # numbers = [0, 1, 2, 3, 4]
 
 # print(my_reduce(my_add, numbers))
+
+
+# string = 'cat'
+# print(string[0:0])
+# print(string[0:1])
+# print(string[0:2])
+# print(string[0:3])
+# print(string[2:3])
+# print(string[3:3], 'hey')
+
