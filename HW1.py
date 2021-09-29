@@ -93,7 +93,9 @@ def prefixes(seq):
     in a single line.
     '''
     #if the seq is empty
+    if (len(seq) == 0):
         #return
+        return
     #iterate over the range of the length of the seq
     for i in range(len(seq)):
         #yield the sequence from 0 up to the current element
@@ -116,7 +118,7 @@ def suffixes(seq):
 O: all the slices of a given sequence
 I: arbitrary sequence (datatype not known)
 C: none
-E: sequence is empty?
+E: sequence is empty? What do we return??
 """
 def slices(seq):
     ''' Create a generator that yields all the slices of a
@@ -124,7 +126,9 @@ def slices(seq):
     in a single line.
     '''
     #if the sequence is empty
+    if (len(seq) == 0):
         #return ''
+        return ''
     #iterate over the range of the length of the sequence
     for i in range(len(seq)):
         #iterate over the range of the length of the sequence again
@@ -318,20 +322,30 @@ class BSTree(object):
         Note that this should be the sorted order if you've inserted all
         elements using your previously defined insert function.
         '''
-        #if the root node is None (meaning there is nothin in the tree yet)
+        #if the root node is None (meaning there is nothing in the tree yet)
+        if (self.root == None):
             #return empty list
+            return []
         #create a result list
-        #create inner recursive function - elementes_rec(node)
+        result_of_elements = []
+        #create inner recursive function - elements_rec(curr_node)
+        def elements_rec(curr_node):
             #if node has something
+            if (curr_node):
                 #if there's a left child
+                if (curr_node.left):
                     #call the function on the left child
+                    elements_rec(curr_node.left)
                 #push the value of the node to the result list
+                result_of_elements.append(curr_node.value)
                 #if there's a right child
+                if (curr_node.right):
                     #call the function on the right child
-
-
-
+                    elements_rec(curr_node.right)
+        #call the function on the root node
+        elements_rec(self.root)
         #return the result list
+        return result_of_elements
 
 """
 O: Node of the BSTree with value, left, and right attributes
@@ -374,16 +388,16 @@ class Node(object):
 # print(next(suffix)) # 'es'
 # print(next(suffix)) # 'yes'
 
-slices_name = slices('jason')
-print(next(slices_name)) # ' '
-print(next(slices_name)) # 'j'
-print(next(slices_name)) # 'ja'
-print(next(slices_name)) # 'jas'
-print(next(slices_name)) # 'jaso'
-print(next(slices_name)) # 'jasons'
-print(next(slices_name))
-print(next(slices_name))
-print(next(slices_name))
+# slices_name = slices('jason')
+# print(next(slices_name)) # ' '
+# print(next(slices_name)) # 'j'
+# print(next(slices_name)) # 'ja'
+# print(next(slices_name)) # 'jas'
+# print(next(slices_name)) # 'jaso'
+# print(next(slices_name)) # 'jasons'
+# print(next(slices_name))
+# print(next(slices_name))
+# print(next(slices_name))
 
 #Testing my_reduce:
 # def my_add(a, b):
