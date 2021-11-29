@@ -1,2 +1,2 @@
-# PythonHW1
-Second HW of CIS 192 Python Programming
+# Pythonic Programming
+Some more programming of basic functions in Python
